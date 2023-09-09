@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<head>
+    <title>User Master</title>
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styler.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}">
+</head>
+<body>
+    <div id="header"> 
+        <a href="/dashboard"><img id="logo" src="{% static 'images/icon.png'%}"> </a> 
+        <h1 id="heading">USER MASTER</h1> 
+        <a href="/admin"><img id="adminlogo" src="{% static 'images/admin.png'%}"> 
+            <p id="admintxt">Administrator</p> </a>
+    </div>   
+    <br>
+
+<form method="post" action="/userform">{% csrf_token %}
+<div style="margin-left: 400px; margin-top: 60px;"> Name : 
+    <input style="margin-left: 100px; padding-left: 100px;background-color:white;" type="text" name="name"> </div>
+<div style="margin-left: 400px; margin-top: 20px;"> Email : 
+    <input style="margin-left: 104px; padding-left: 98px;background-color:white;" type="email" align="center" name="email"></div>
+<div style="margin-left: 400px;margin-top: 20px;"> Mobile :
+     <input style="margin-left: 92px; padding-left: 98px;background-color:white;" type="text" name="contact"> </div>
+<div style="margin-left: 400px;margin-top: 20px;"> Password : 
+    <input style="margin-left: 75px; padding-left: 100px;background-color:white;" type="password" required name="password"></div>
+
+<div style="margin-left: 400px; margin-top: 20px;"> Confirm password : 
+    <input style="margin-left: 14px; padding-left: 100px;background-color:white;" type="password" required></div>
+<div style="margin-left: 600px; margin-top: 50px;"> Admin : 
+    <input style="margin-left: 0px;background-color:white;" type="checkbox" id="adminbtn" onclick="setadminstat()">
+</div>
+    <button style="margin-left: 600px;margin-top: 20px;" type="submit">Submit</button>
+    <input type="hidden" id="userwel" name="userfirst">
+    <input type="hidden" id="admincheck" name="isadmin">
+</form>
+</body>
+<script>
+function setadminstat(){
+    var admin = document.getElementById("adminbtn")
+    if(admin.checked){
+        //console.log('yes')
+        document.getElementById('admincheck').value=1;
+    }
+    else{
+        document.getElementById('admincheck').value=0;
+    }
+}
+
+function postman(){
+    var name=document.getElementById("name").value;
+    var email=document.getElementById("email").value;
+    var mobile=document.getElementById("contact").value;
+    var password=document.getElementById("password").value;
+    alert(name+"\n"+email+"\n"+mobile+"\n"+password)
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/userform", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify([name,email,mobile,password])); 
+}
+window.onload=function(){
+    setuserfirst();
+    setadminstat();
+};
+function setuserfirst(){
+    document.getElementById("userwel").value=1
+}
+  </script>
+</html>

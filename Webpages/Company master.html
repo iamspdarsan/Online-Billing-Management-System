@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Company Master</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styler.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}">
+    <style>
+      div {
+        margin-bottom: 10px;
+      }
+      label {
+        display: inline-block;
+        width: 150px;
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header"> 
+        <a href="/dashboard"><img id="logo" src="{% static 'images/icon.png'%}"> </a> 
+        <h1 id="heading">Company Master</h1>
+        <a href="/admin"><img id="adminlogo" src="{% static 'images/admin.png'%}"> 
+          <p id="admintxt">Administrator</p> 
+        </a>
+    </div>
+    <br>
+    <form action="/commasterform" method="post">{% csrf_token %}
+     <div id="sbody" style="margin-left: 400px;margin-top:60px">
+      <div>
+        <label>Company Name :</label>
+        <input style="background-color:white;" type="text" name="companyname" required />
+      </div>
+      <div>
+        <label>Address 1 :</label>
+        <input style="background-color:white" type="text" name="address" required/>
+      </div>
+      <div>
+        <label>Address 2 :</label>
+        <input style="background-color:white;" type="text" name="address2" required/>
+      </div>
+      <div>
+        <label>Pincode :</label>
+        <input style="background-color:white;"type="text" name="pincode" required/>
+      </div>
+      <div>
+        <label>State :</label>
+        <input style="background-color:white;"type="text" name="state" required/>
+      </div>
+      <div>
+        <label>City :</label>
+        <input style="background-color:white;"type="text" name="city" required/>
+      </div>
+      <div>
+        <label>GSTIN :</label>
+        <input style="background-color:white;"type="text" name="gstin" required/>
+      </div>
+      <input type="hidden" name="uid" value="{{userid}}">
+      <div>
+        <!--<label>Active</label>-->
+        <input style="background-color:white;"type="hidden" name="active" checked>
+      </div>
+    <input style="background-color:rgba(14, 186, 239, 0.492); padding-left: 10px;margin-left: 198px;margin-top: 20px;" type="submit" />
+</div>
+</form>
+  </body>
+</html>

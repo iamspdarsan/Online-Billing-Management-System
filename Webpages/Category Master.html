@@ -1,0 +1,55 @@
+<!DOCTYPE html>   
+<html>   
+<head>
+<title>Category Master</title>
+{% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styler.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}">
+<style>
+    div {
+      margin-bottom: 10px;
+    }
+    label {
+      display: inline-block;
+      width: 150px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+    <div id="header"> 
+      <a href="/dashboard"><img id="logo" src="{% static 'images/icon.png'%}"> </a> 
+        <h1 id="heading">Category Master</h1> 
+        <a href="/admin"><img id="adminlogo" src="{% static 'images/admin.png'%}"> 
+          <p id="admintxt">Administrator</p> 
+        </a> 
+    </div>
+    <br>
+<div>
+<!--<form action="/catmasterform" method="post">{% csrf_token %}-->
+<div style="margin-left: 400px;margin-top: 30px;">
+  <label>Category Name: </label>
+  <input id="catinp" style="margin-left: 10px;background-color:rgb(255, 255, 255);" type="text" name="catname">
+</div>
+<div style="margin-left: 500px;"><label>Active</label>
+  <input id="actinp" style="margin-left: 10px;background-color:rgb(255, 255, 255);" type="checkbox" name="active">
+</div>
+<input type="hidden" value="{{uid}}" id="uid">
+<button style="margin-left: 610px;background-color:rgba(14, 186, 239, 0.492);" onclick="addcategory()">ADD</button>
+</div>
+</body>
+<script>
+  function addcategory(){
+    var cat=document.getElementById("catinp").value;
+    var act=document.getElementById("actinp").checked;
+    var uid=document.getElementById("uid").value;
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/catmasterform", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify([uid,cat,act])); 
+    document.getElementById("catinp").value='';
+    document.getElementById("actinp").checked=false;
+    alert("Category "+cat+" Added.")
+  }
+</script>
+</html>

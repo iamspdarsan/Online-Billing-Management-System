@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/styler.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}">
+	<head>
+    <div id="header"> 
+      <a href="/dashboard"><img id="logo" src="{% static 'images/icon.png'%}"> </a> 
+      <h1 id="heading">UOM master</h1>  
+      <a href="/admin"><img id="adminlogo" src="{% static 'images/admin.png'%}"> 
+      <p id="admintxt">Administrator</p> 
+      </a> 
+  </div> <br>
+  <div style="margin-left:240px ;margin-top: 40px;">
+    <p>UOM Name :  <input id="uomname" type="text"> </p>Active :  <input id="act" type="checkbox">
+    <div style="margin-top: 20px;"><button onclick="update()">ADD</button></div>
+		<title></title>
+</head>
+<div id="full" style="margin-top: 20px;">
+<body>
+  <!--<form action="/uomform" method="post">-->
+  <input id="uoms" type="hidden" name="uoms">
+  <table width="800" border="1" id="uomtable">
+  <tbody>
+    <tr>
+      <th>SI.NO</th>
+      <th align="center">UOM name</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </tbody>
+</table>
+<br>
+<input style="color:white ;background-color:rgb(247, 134, 29)" id="btn"  type="submit" onclick="tableToJson(document.getElementById('uomtable'))">
+  <!--</form>-->
+<script>
+function update(){
+  var uomname = document.getElementById('uomname');
+  var activestat= document.getElementById('act');
+  var active;
+  if(activestat.checked == true){
+    active = "yes";  
+    activestat.click();  
+  }
+  else{
+    active = "no";    
+  }
+  var uomnameval = uomname.value;
+  uomname.value = '';
+  appendRow(uomnameval,active);
+}
+// append row to the HTML table
+var ro=1;
+function appendRow(uomnameval,active) {
+  if (uomnameval === '')return;
+    var tbl = document.getElementById('uomtable'), // table reference
+        row = tbl.insertRow(tbl.rows.length);      // append table row
+    // insert table cells to the new row
+    createCell(row.insertCell(),ro);
+    createCell(row.insertCell(), uomnameval);
+    createCell(row.insertCell(), active);
+    createCell(row.insertCell(), '');
+    createclickable();
+}
+function tableToJson(table) { 
+    var data=[];
+    for (var i=1; i<table.rows.length; i++) { 
+        var tableRow = table.rows[i]; 
+        var rowData = []; 
+        rowData.push(tableRow.cells[0].innerHTML);
+        rowData.push(tableRow.cells[1].innerHTML);
+        rowData.push(tableRow.cells[2].innerHTML);
+        data.push(rowData); 
+    } 
+    var xhr = new XMLHttpRequest();
+    //xhr.open("POST", "/uomform", true);
+    //xhr.setRequestHeader('Content-Type', 'application/json');
+    //xhr.send(JSON.stringify(data));
+    alert("UOM Added") ;
+    return data;
+}
+function createclickable(){
+  var table = document.getElementById('uomtable');
+  var action = '<button style="padding: 0;border: none;background: none;" onclick="remove(getId(this))">❌</button>';// or <button style="padding: 0;border: none;background: none;" onclick="edit(getId(this))">📝</button>
+  table.rows[ro].cells[3].innerHTML = action;
+  ro+=1;
+}
+function  getId(element) {
+    return element.parentNode.parentNode.rowIndex
+}
+function remove(rownum){
+  var table = document.getElementById('uomtable');
+  table.deleteRow(rownum);
+  ro-=1;
+}
+function edit(rownum){
+  var table = document.getElementById('uomtable');
+  var inp = prompt("enter new value");
+  table.rows[rownum].cells[1].innerHTML = inp;
+}
+// create DIV element and append to the table cell
+function createCell(cell, text) {
+    var txt = document.createTextNode(text); // create text node
+    cell.appendChild(txt);                   // append DIV to the table cell
+}
+</script>
+</body>
+</html>

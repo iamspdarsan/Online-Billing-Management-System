@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>BillScreen</title>
+{% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styler.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}">
+</head>
+<body id="layout">
+    <div id="header">
+        <a href="/dashboard"><img id="logo" src="{% static 'images/icon.png'%}"> </a> 
+        <h1 id="heading">BILLING SCREEN</h1>
+        <h1 id="stock">Stock : 24</h1>
+        <h1 id="billno"> Bill No: 175</h1>
+        <a href="/admin"><img id="adminlogo" src="{% static 'images/admin.png'%}">
+        <p id="admintxt">Administrator</p>
+        </a>
+    </div>
+    <div id="content">
+    
+    <form action="">
+    <label>Product name : <input list="products"></label>
+    <datalist id="products">
+    <option value="Lion dates 1kg">
+    <option value="Kissan jam 200gm">
+    <option value="Oats 100gm">   
+    </datalist>
+
+    <label style="padding-left: 10px;">Product code : <input  style="padding-left: 15px;"type="text"></label>
+    <label style="padding-left: 10px;">Quantity : <input style="padding-left: 10px;" type="number"></label>
+    <label style="color:blue;font-size: 20px; padding-left: 10px;">Total Price :
+        <label style="color:black ;">20,000RS</label></label></label>
+    <botton type="button" onclick="appendRow()">OK</botton>
+
+    </div>
+    <div id="billtable">
+    <table style="width: 80%;height: 100%; border: 1px solid;float:left" id="billtab">
+        <tr style="border: 1px solid;">
+            <th style="border: 1px solid;">CODE</th>
+            <th style="border: 1px solid;">Product detail</th>
+            <th style="border: 1px solid;">Sub Cat name</th>
+            <th style="border: 1px solid;">UOM</th>
+            <th style="border: 1px solid;">Quantity</th>
+            <th style="border: 1px solid;">Unit Price</th>
+            <th style="border: 1px solid;">TAX(%)</th>
+            <th style="border: 1px solid;">Total</th>
+            <th style="border: 1px solid;">Sub-Total</th>
+            <th style="border: 1px solid;">Remove</th>
+        </tr>
+        </table>
+        <table style="width: 20%;padding-left:40px;display:inline;">
+            <tr style="border: 1px solid;">
+                <td>Sub Total: <p style="color: blue;">177.60</p></td>
+            </tr>
+            <tr style="border: 1px solid;">
+                <td>Tax : <p style="color: blue;">31.97</p></td>
+            </tr>
+            <tr style="border: 1px solid;">
+                <td>Grand Total : <p style="color: blue;">209.57</p></td>
+            </tr>
+            <tr style="border: 1px solid;">
+                <td>Round off : <p style="color: blue;">0.43</p></td>
+            </tr>
+        </table>
+        </div>
+    
+    <div id="content2">
+        <label>Name : <input type="text"> </label>
+        <label>Mobile: <input type="text"> </label>
+        <label>Address : <input type="text"> </label>
+
+    </div>
+</body>
+<script>
+var ro=1;
+function appendRow() {
+    var tbl = document.getElementById('billtab'), // table reference
+        row = tbl.insertRow(tbl.rows.length);      // append table row
+    // insert table cells to the new row
+    createCell(row.insertCell(),' g');
+    createCell(row.insertCell(), ' ');
+    createCell(row.insertCell(), ' ');
+    createCell(row.insertCell(), ' ');
+    createCell(row.insertCell(),' ');
+    createCell(row.insertCell(), ' ');
+    createCell(row.insertCell(), ' ');
+    createCell(row.insertCell(), ' ');
+    createCell(row.insertCell(),' ');
+    createCell(row.insertCell(), ' ');
+   createclickable();
+}
+// create DIV element and append to the table cell
+function createCell(cell, text) {
+    var txt = document.createTextNode(text); // create text node
+    cell.appendChild(txt);                   // append DIV to the table cell
+}
+
+function createclickable(){
+  var table = document.getElementById('billtab');
+  var action = '<button style="padding: 0;border: none;background: none;" onclick="remove(getId(this))">❌</button>';
+  table.rows[ro].cells[9].innerHTML = action;
+  ro+=1;
+}
+function  getId(element) {
+    return element.parentNode.parentNode.rowIndex
+}
+function remove(rownum){
+  var table = document.getElementById('billtab');
+  table.deleteRow(rownum);
+  ro-=1;
+}
+</script>
+
+</html>
+    
+

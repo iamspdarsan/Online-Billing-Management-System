@@ -1,0 +1,138 @@
+#btn
+{
+size: 4px;
+width: 100px;
+
+}
+
+.a {
+}
+	{border-color: aqua
+	}
+	{background-color: black
+	}
+tr:nth-child(even) {
+    background-color: #8ae7e7;
+  }
+#sbody{
+    padding-left: 400px;
+    padding-top: 50px;
+}
+#whole{
+    font-size: 20px;
+    padding: 0px;
+    margin-bottom: 0px;
+    background-color: white;
+}
+
+#body{ 
+    background-image: whitesmoke;  
+    
+} 
+#full{
+    background-image: whitesmoke;
+}
+#size{
+    background-color: rgb(91, 236, 176); 
+    height: 80px; 
+    width: auto; 
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    
+} 
+
+#header{ 
+    background-color: rgb(91, 236, 176); 
+    height: 80px; 
+    width: auto; 
+} 
+ 
+#logo{ 
+    height: 70px; 
+    width: 90px; 
+    padding: 0px; 
+    float:left; display:inline; 
+    padding-left: 20px; 
+} 
+ 
+#heading{ 
+    height: 70px; 
+    width: 350px; 
+    padding: 0px; 
+    padding-left: 10px; 
+    padding-top: 10px; 
+    float:left; display:inline; 
+    font-size: 40px; 
+     
+} 
+ 
+#stock{ 
+    background-color:rgba(104, 223, 253, 0.678); 
+    height: fit-content; 
+    width: fit-content; 
+    font-size: 28px; 
+    padding: 10px; 
+    padding-left: 20px; 
+    padding-top: 20px; 
+    padding-bottom: 25px; 
+    display: inline; 
+    float: left; 
+    color: black; 
+    border: 0px solid; 
+ 
+} 
+ 
+#billno{ 
+    background-color: orange; 
+    height: fit-content; 
+    width: fit-content; 
+    font-size: 28px; 
+    padding: 10px; 
+    padding-left: 20px; 
+    padding-top: 20px; 
+    padding-bottom: 25px; 
+    display: inline; 
+    float: left; 
+    color: black; 
+    border: 0px solid; 
+ 
+} 
+#adminlogo{ 
+    float: left; 
+    height: 55px; 
+    width: auto; 
+    padding-left: 10px; 
+    padding-right: 30px; 
+    float: right; 
+    padding-top: 20px; 
+     
+} 
+#admintxt{ 
+    float: right; 
+    font-size: 25px; 
+    padding-top: 17px; 
+    padding-right: 0px; 
+} 
+#row1{ 
+    padding: 67px; 
+ 
+} 
+#content{ 
+    padding: 20px; 
+    padding-left: 20px; 
+    font-size: large; 
+} 
+ 
+#billtable{ 
+    padding: center; 
+    padding-left: 120px; 
+    padding-top: 80px; 
+ 
+} 
+#content2{ 
+    padding: 200px; 
+    padding-left: 0px; 
+    position: absolute; 
+    padding-top: 240px; 
+}

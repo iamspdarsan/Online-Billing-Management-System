@@ -1,0 +1,45 @@
+<!DOCTYPE html>   
+<html>   
+<head>
+  <title>Sign-In</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/styler.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}">
+</head>
+<body style="background-color: white;"> 
+  <div id="header"> 
+    <a href="/dashboard"><img id="logo" src="{% static 'images/icon.png'%}"> </a> 
+    <h1 id="heading">LOG IN</h1>
+    <a href="/admin"><img id="adminlogo" src="{% static 'images/admin.png'%}"> 
+      <p id="admintxt">Administrator</p> 
+    </a>
+</div>
+  <form action="/userretrieve" method="post">{% csrf_token %}
+    <div class="container" style="margin-top: 100px;">   
+        <center>   <p>Mail ID :  <br>
+          <input type="text" placeholder="Email here" name="userid" required> </p> </center>
+        <center> <p>Password :    <br>
+          <input type="password" placeholder="Password here" name="password" required>  </p> </center>
+        <center>
+        <button type="submit"class="Submitbtn">Submit</button>
+        <button type="button" class="cancelbtn"> Cancel</button> </center>  
+        <!--<center>  <input type="checkbox" checked="checked"> Remember me </center>     -->
+        <center>   <div style="margin-top: 20px;"><a href="#" onclick="passwordreset()"> Forgotpassword? </a>  </div> </center>
+    </div>  
+  </form>
+</body>
+<script>
+function passwordreset(){
+  var newpass=prompt("Enter new password");
+  if(newpass!=null){
+  var confirmpass=prompt("Confirm your password");}
+  if(newpass!=confirmpass){
+    alert("Password mismatch try again")
+    passwordreset();
+  }
+  else if(newpass!="" && confirmpass!="" && newpass!=null && confirmpass!=null){
+  alert("Credential updated!\nNow you can login with that.");}
+}
+
+</script>     
+</html>  

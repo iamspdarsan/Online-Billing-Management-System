@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<head>
+    <title>Home</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styler.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}">
+</head>
+<body id="layout">
+
+    <div id="header">
+        <a href="/dashboard"><img id="logo" src="{% static 'images/icon.png'%}"> </a>
+        <h1 id="heading" style="width: 500px;">DASHBOARD</h1>
+        <a href="/logout"><img id="adminlogo" src="{% static 'images/admin.png'%}"> 
+            <p id="admintxt"></p> </a>
+        <a href="/admin"><img id="adminlogo" src="{% static 'images/admin.png'%}"> 
+            <p id="admintxt">Administrator</p> </a>
+    </div>
+
+    <form action="/categorymaster/" method="post" >{% csrf_token %}<div style="float: left;"><button type="submit" 
+        style="float: left;margin-left: 165px;margin-top: 100px;border-color: white;float: left;;background-color: rgb(202, 199, 3);width: 200px;height: 200px;">
+        <h4 style="color: rgb(255, 255, 255);">Category Master</h4></button></div>
+    <input type="hidden" value="{{userid}}" name="uid">
+    </form>
+
+    <form action="/subcategory/" method="post" >{% csrf_token %}<div><button type="submit" style="float: left;;width: 200px;height: 200px;border-color: white;margin-top: 100px;background-color: rgb(255, 145, 0);">
+        <h4 style="color: white;float: left;">Sub-Category Master</h4></button></div>
+        <input type="hidden" value="{{userid}}" name="uid">
+    </form>
+    
+        <form action="/uom/" method="post">{% csrf_token %}<div style="float: left;"><button type="submit" 
+            style="float: left;margin-top: 100px;border-color: white;background-color: rgb(226, 4, 89);float: left;;width: 200px;height: 200px;">
+            <h4 style="color: white;">UOM Master</h4></button></div> 
+            <input type="hidden" value="{{userid}}" name="uid">
+        </form>
+
+        <form action="/productmaster/" method="post">{% csrf_token %}<div style="float: left;"><button type="submit" 
+        style="float: left;margin-top: 100px;border-color: white;background-color: rgb(0, 174, 255);float: left;;width: 200px;height: 200px;">
+        <h4 style="color: white;">Product Master</h4></button></div>
+        <input type="hidden" value="{{userid}}" name="uid">
+        </form>
+
+    <form action="/billscreen/" method="post">{% csrf_token %}<div><button type="submit" style="float: left;width: 200px;height: 200px;border-color: white;margin-top: 100px;background-color: rgb(197, 52, 233);">
+    <h4 style="color: white;">Billing Screen</h4></button></div>
+    <input type="hidden" value="{{userid}}" name="uid">
+    </form>
+ 
+</body>

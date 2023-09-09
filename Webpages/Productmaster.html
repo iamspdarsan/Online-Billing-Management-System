@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Master</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styler.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}">
+</head>
+<body id="layout">
+
+    <div id="header">
+        <a href="/dashboard"><img id="logo" src="{% static 'images/icon.png'%}"> </a> 
+        <h1 id="heading" style="width: 500px;">PRODUCT MASTER</h1>
+        <a href="/admin"><img id="adminlogo" src="{% static 'images/admin.png'%}"> 
+            <p id="admintxt">Administrator</p> </a>
+    </div>
+    <form method="post" action="/prodform">{% csrf_token %}
+    <div style="padding-top: 40px;">
+        <div style="padding-left: 250px;float: left;font-weight: 600;">PRODUCT CATEGORY</div>
+        <div style="padding-left: 150px;float: left;font-weight: 600;">SUB CATEGORY</div>
+        <div style="padding-left: 150px;float: left;font-weight: 600;">PRODUCT NAME</div>
+    </div>
+    
+    <div style="padding-top: 0px;margin-top: 8px;margin-left: 20px;">
+        <input name="prodcat" style="width: 200px;display: inline;margin-top: 1px;margin-left: 240px;" list="product category">
+        <input name="subcat" style="width: 200px; display: inline;margin-top: 1px;margin-left:80px;" list="sub category">
+        <input name="prodname" style="width: 200px;display: inline;margin-top: 1px;margin-left: 70px;" type="text">
+        
+        <datalist id="product category">
+            <option value="Fittings">
+            <option value="Hardware">
+            <option value="Electricals">
+            <option value="Beverages">
+        </datalist>
+        
+        <datalist id="sub category">
+            <option value="Lights">
+            <option value="Mahadev">
+            <option value="Drinks">
+            <option value="Other">   
+        </datalist>
+    </div>
+    
+    <div style="margin-top: 20px;">
+        <div style="padding-left: 250px;float: left;font-weight: 600;">MAIN UOM</div>
+        <div style="padding-left: 220px;float: left;font-weight: 600;">CONTAINS</div>
+        <div style="padding-left: 190px;float: left;font-weight: 600;">SALES UOM</div>
+    </div>
+
+    <div>
+        <input name="mainuom" style="width: 200px;display: inline;margin-left: 260px;" list="mainuom">
+        <input name="contains" style="width: 200px;display: inline;margin-left: 80px;" type="text">
+        <input name="salesuom" style="width: 200px;display: inline;margin-left: 70px;" list="salesuom">
+        
+        <datalist id="mainuom">
+            <option value="Nos">
+            <option value="KG">
+            <option value="Grams">   
+        </datalist>
+        
+        <datalist id="salesuom">
+            <option value="Nos">
+            <option value="KG">
+            <option value="Grams">   
+        </datalist>
+    </div>
+
+    <div style="margin-top: 20px;font-weight: 600;">
+        <div style="padding-left: 250px;float: left;">PURCHASE RATE</div>
+        <div style="padding-left: 150px;float: left;margin-left: 40px;">SALES RATE</div>
+        <div style="padding-left: 150px;float: left;margin-left: 60px;">TAX (%)</div>
+    </div>
+
+    <div style="padding-top: 0px;margin-right: 195px;margin-left:20px">
+        <input name="purchaserate" style="width: 200px;display: inline;margin-left: 240px;margin-right: 25px;" type="text">
+        <input name="salesrate" style="width: 200px;display: inline;margin-left:55px" type="text">
+        <input name="tax" style="width: 200px;display: inline;margin-left:70px" type="text">
+        </div>
+
+        <div style="margin-top: 20px;font-weight: 600;">
+            <div style="padding-left: 250px;float: left;">STOCK</div>
+            <div style="padding-left: 130px;float: left;margin-left: 135px;">WARNING STOCK</div>
+            <div style="padding-left: 150px;float: left;margin-left: 0px;">DISCOUNT (%)</div>
+        </div>
+
+        <div style="padding-top: 0px;">
+            <input name="stock" style="width: 200px;display: inline;margin-left: 260px;" type="text">
+            <input name="warnstock" style="width: 200px;display: inline;margin-left: 80px;" type="text">  
+            <input name="discount" style="width: 200px;display: inline;margin-left: 70px;" type="text">
+        </div>
+
+        <div style="margin-top: 20px;font-weight: 600;">
+            <div style="padding-left: 250px;float: left;">HSN CODE</div>
+        </div>
+
+        </div>
+
+        <div style="padding-top: 30px;">
+            <input name="hsncode" style="width: 200px;display: inline;margin-left: 260px" type="text">
+        </div>
+
+        <div style="padding-top: 20px;font-weight: 600;">
+            <div style="padding-left: 250px;float: left;">BULK UPLOAD PRODUCT</div>
+        </div>
+
+        <div style="padding-top: 40px;">
+            <input id="fetchfile" style="width: 300px;display: inline;margin-left: 250px;padding-bottom:10px" type="file" onclick="uploadimage()">
+        </div>
+        
+        <div>
+            <button type="submit" style="margin-left: 250px;background-color:orangered; color: white;">SUBMIT</button>
+            <button type="reset" style="margin-left: 20px;background-color:orangered; color: white;">RESET</button>
+            <button type="button" style="margin-left: 20px;background-color:orangered; color: white;">UPLOAD PRODUCTS</button>
+
+            </div>
+        
+    </div>
+</form>
+</body>
+<script>
+function uploadimage(){
+    let photo = document.getElementById("fetchfile").files[0];
+    let formData = new FormData();
+    formData.append("photo", photo);
+    fetch('/prodmasterform', {method: "POST", body: formData});
+}    
+</script> 
+</html>   

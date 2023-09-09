@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<head>
+	{% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styler.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}">
+</head>
+<body id="whole">
+	<div id="header">
+        <a href="/dashboard"><img id="logo" src="{% static 'images/icon.png'%}"> </a>
+        <h1 id="heading">Sub Category</h1>
+        <a href="/admin"><img id="adminlogo" src="{% static 'images/admin.png'%}">
+        <p id="admintxt">Administrator</p>
+        </a>
+    </div>		
+<!-- <form method="post" action="/subcatform">{% csrf_token %} -->
+	<div style="margin-left: 450px;margin-top: 70px;">Category : 
+
+		<select name="catname" id="catname" style="margin-left: 120px; padding-left: 97px;">
+			<option value="select any of this" >select any of this</option>	
+			{% for elem in datalist %}
+				<option value={{elem}} >{{elem}}</option>
+				{% endfor%}
+		</select>	
+	</div>
+
+<div style="margin-left: 450px; margin-top: 30px">Sub Category Name : 
+	<select id="subcatname" style="margin-left: 40px;padding-left: 97px;" id="set2" name="subcat">
+		<option value="Top Wear" >Top Wear</option>
+		<option value="Bottom Wear" >Bottom Wear</option>
+		<option value="Other" >Other</option>
+		
+</select></div>
+<input id="subcatlist" type="hidden" value="{{subcatlist}}">
+<input id="uid" type="hidden" value="{{uid}}">
+<div style="margin-left: 600px;margin-top: 40px">Active
+<input id="act" type='checkbox' name="active"></div>
+<button onclick="addsubandcat()" style="color:whitesmoke ;background-color: rgb(126, 209, 141);margin-left: 595px; margin-top: 20px;" id="btn">Add to list</button>
+</div>
+	<script>
+		let nohist=true;
+		function subcatgen(){
+			if(nohist){var subcatfield=document.getElementById('subcatname');
+			var subcatlist=document.getElementById('subcatlist').value;
+			var catname=document.getElementById('catname').value;
+			console.log("cat name is "+catname);
+			console.log(subcatlist);
+			var subcatdict=JSON.parse(subcatlist);
+			console.log(subcatdict); 
+			for(let key in subcatdict){
+				console.log("key is "+key);
+				if (catname === key && nohist){
+			 		for(let elem of subcatdict[key]){
+						console.log(elem);
+						console.log("elem is "+elem);
+			 		subcatfield.innerHTML=subcatfield.innerHTML+'<option value="'+elem+'">'+elem+'</option>';
+			 		nohist=false;}}
+				else{
+					nohist=true;
+					subcatfield.innerHTML='<option value="select option" >select any of this</option>';	}			}
+			 }}
+	function addsubandcat(){
+    var cat=document.getElementById("catname").value;
+    var subcat=document.getElementById("subcatname").value;
+	var act=document.getElementById("act").checked;
+	var uid=document.getElementById('uid').value;
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/subcatform", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify([uid,cat,subcat,act]));
+	window.alert(subcat+" is added under "+cat);
+    document.getElementById("actinp").checked=false;
+  }
+		</script>
+	</body>	
+</html> 
